@@ -57,7 +57,7 @@ func main() {
 
 	fmt.Println(mySlice)
 
-	nums := []int{1, 2, 3, 4, 5} //int, string etc...
+	nums := []int{1, 2, 3, 4, 5} //int, string
 
 	fmt.Println(nums)
 	fmt.Println(nums[0:4])
