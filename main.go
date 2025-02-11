@@ -61,6 +61,14 @@ func main() {
 
 	fmt.Println(nums)
 	fmt.Println(nums[0:4])
+
+	isTrue := true
+
+	if isTrue {
+		fmt.Println("True")
+	} else {
+		fmt.Println("False")
+	}
 }
 
 func saySomething() (string, string) {
