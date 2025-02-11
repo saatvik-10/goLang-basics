@@ -69,6 +69,45 @@ func main() {
 	} else {
 		fmt.Println("False")
 	}
+
+	for i := 0; i < 5; i++ {
+		fmt.Println(i)
+	}
+
+	animals := []string{"dog", "cat", "fish"}
+
+	for _, animal := range animals {
+		fmt.Println(animal)
+	}
+
+	animalss := make(map[string]string)
+	animalss["dog"] = "Shane"
+	animalss["cat"] = "Mittens"
+
+	for animalType, animal := range animalss {
+		fmt.Println(animalType, animal)
+	}
+
+	firstLine := "Once upon a time in Mumbai dobara"
+
+	for i, char := range firstLine {
+		fmt.Println(i, ":", char) //string is a slice of bytes
+	}
+
+	type Users struct {
+		FirstName string
+		LastName  string
+		Age       string
+	}
+
+	var user []Users
+	user = append(user, Users{"Shane", "Lee", "25"})
+	user = append(user, Users{"Bond", "Miller", "35"})
+	user = append(user, Users{"Mark", "Sam", "21"})
+
+	for _, l := range user {
+		fmt.Println(l.FirstName, l.LastName, l.Age)
+	}
 }
 
 func saySomething() (string, string) {
