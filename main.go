@@ -3,6 +3,8 @@ package main
 import (
 	"fmt"
 	"sort"
+
+	"github.com/saatvik-10/goLang-basics/helpers"
 )
 
 type User struct {
@@ -125,6 +127,12 @@ func main() {
 	}
 
 	PrintInfo(&dog)
+
+	var myVar helpers.SomeType
+	myVar.Name = "Shane"
+	myVar.Age = 25
+
+	fmt.Println(myVar)
 }
 
 func PrintInfo(a Animal) {
