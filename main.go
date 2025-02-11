@@ -10,6 +10,16 @@ type User struct {
 	LastName  string
 }
 
+type Animal interface {
+	Says() string
+	NumberOfLegs() int
+}
+
+type Dog struct {
+	Name  string
+	Breed string
+}
+
 func main() {
 	fmt.Println("Hello, World!")
 
@@ -108,6 +118,26 @@ func main() {
 	for _, l := range user {
 		fmt.Println(l.FirstName, l.LastName, l.Age)
 	}
+
+	dog := Dog{
+		Name:  "Fido",
+		Breed: "Poodle",
+	}
+
+	PrintInfo(&dog)
+}
+
+func PrintInfo(a Animal) {
+	fmt.Println(a.Says())
+	fmt.Println(a.NumberOfLegs())
+}
+
+func (d *Dog) Says() string {
+	return "Woof"
+}
+
+func (d *Dog) NumberOfLegs() int {
+	return 4
 }
 
 func saySomething() (string, string) {
