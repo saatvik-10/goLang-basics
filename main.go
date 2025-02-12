@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"sort"
 
@@ -20,6 +21,12 @@ type Animal interface {
 type Dog struct {
 	Name  string
 	Breed string
+}
+
+type Person struct {
+	Name    string `json:"Name"`
+	Age     string `json:"Age"`
+	Has_Dog bool   `json:"has_dog"`
 }
 
 func main() {
@@ -135,13 +142,61 @@ func main() {
 	fmt.Println(myVar)
 
 	intChan := make(chan int)
-	defer close(intChan)      //execute whtever comes after this line when the function is done executing
+	defer close(intChan) //execute whtever comes after this line when the function is done executing
 
 	go calcVal(intChan)
 
 	num := <-intChan
 
 	fmt.Println(num)
+
+	myJson := `
+	[
+		{
+			"Name": "Shane",
+			"Age": "25",
+			"has_dog": true
+		},
+		{
+			"Name": "Bond",
+			"Age": "35",
+			"has_dog": false
+		}
+	]
+	`
+
+	var unmarshalled []Person
+
+	err := json.Unmarshal([]byte(myJson), &unmarshalled)
+
+	if err != nil {
+		fmt.Println("Error unmarshalling JSON", err)
+	}
+
+	fmt.Printf("unmarshalled: %v", unmarshalled)
+
+	//write json from a struct
+	var mySlices []Person
+
+	var m1 Person
+	m1.Name = "Shane"
+	m1.Age = "25"
+	m1.Has_Dog = true
+
+	mySlices = append(mySlices, m1)
+
+	var m2 Person
+	m2.Name = "Shane"
+	m2.Age = "25"
+	m2.Has_Dog = true
+
+	mySlices = append(mySlices, m2)
+
+	newJson, err := json.MarshalIndent((mySlices), "", "    ")
+	if err != nil {
+		fmt.Println("Error marshalling JSON", err)
+	}
+	fmt.Println(string(newJson))
 }
 
 const numPool = 10
