@@ -133,6 +133,22 @@ func main() {
 	myVar.Age = 25
 
 	fmt.Println(myVar)
+
+	intChan := make(chan int)
+	defer close(intChan)      //execute whtever comes after this line when the function is done executing
+
+	go calcVal(intChan)
+
+	num := <-intChan
+
+	fmt.Println(num)
+}
+
+const numPool = 10
+
+func calcVal(intChan chan int) {
+	RandomNumber := helpers.RandNum(numPool)
+	intChan <- RandomNumber
 }
 
 func PrintInfo(a Animal) {
