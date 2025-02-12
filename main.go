@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/json"
+	"errors"
 	"fmt"
 	"sort"
 
@@ -197,6 +198,23 @@ func main() {
 		fmt.Println("Error marshalling JSON", err)
 	}
 	fmt.Println(string(newJson))
+
+	result, err := divide(100, 7)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	fmt.Println(result)
+}
+
+func divide(x, y float32) (float32, error) {
+	var result float32
+
+	if y == 0 {
+		return result, errors.New("cannot divide by zero")
+	}
+	result = x / y
+	return result, nil
 }
 
 const numPool = 10
